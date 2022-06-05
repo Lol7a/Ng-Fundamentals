@@ -1,0 +1,55 @@
+a {
+  color: white;
+  text-decoration: none;
+}
+
+li:hover {
+  background-color: rgba(55, 67, 79, 0.534);
+}
+
+li > a.active {
+  color: #f97924;
+}
+
+.container-fluid {
+  flex-wrap: nowrap;
+  background-color: #485563;
+}
+
+.collapse:not(.show) {
+  display: flex;
+}
+
+ul li:not(:last-of-type) {
+  margin-right: 10px;
+}
+
+.navbar-nav {
+  flex-direction: row;
+}
+
+.collapse.navbar-collapse {
+  justify-content: space-between;
+}
+
+.nav.navbar-nav {
+  font-size: 15px;
+}
+
+#searchForm {
+  display: flex;
+}
+
+.btn {
+  color: white;
+}
+
+.btn:hover {
+  background-color: rgba(55, 67, 79, 0.534);
+}
+
+@media (max-width: 1200px) {
+  #searchForm {
+    display: hidden;
+  }
+}
