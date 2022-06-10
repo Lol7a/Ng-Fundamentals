@@ -12,12 +12,16 @@ export class LocationValidator implements Validator {
     console.log('Hi!');
   }
 
+  // METHOD FOR VALIDATING LOCATION
   validate(formGroup: FormGroup): { [key: string]: any } {
+    // DECLARING ~ DEFINING PROPERTIES WITH FORMGROUPS
     let addressControl = formGroup.controls['address'];
     let cityControl = formGroup.controls['city'];
     let countryControl = formGroup.controls['country'];
     let onlineUrlControl = (<FormGroup>formGroup.root).controls['onlineUrl'];
 
+    // IF LOCATION OR ONLINE URL OT BOTH ARE VALID
+    // THEN THE FORM IS VALIDATED
     if (
       (addressControl &&
         addressControl.value &&

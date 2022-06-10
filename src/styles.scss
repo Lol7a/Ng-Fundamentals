@@ -1,0 +1,51 @@
+body {
+  background-color: #37434f;
+  color: white;
+}
+
+span {
+  display: inline-block;
+}
+
+.hoverwell {
+  background-color: #485563;
+
+  &:hover {
+    background-color: rgba(72, 85, 99, 0.517);
+    cursor: pointer;
+  }
+}
+
+.container {
+  padding-top: 10px;
+}
+
+.pointable {
+  cursor: pointer;
+}
+
+button {
+  color: #555;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.toast {
+  &-success {
+    background-color: #51a351;
+  }
+
+  &-error {
+    background-color: #bd362f;
+  }
+
+  &-info {
+    background-color: #2f96b4;
+  }
+
+  &-warning {
+    background-color: #f86406;
+  }
+}

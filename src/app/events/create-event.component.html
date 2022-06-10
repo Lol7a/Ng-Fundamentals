@@ -1,12 +1,14 @@
 <h1>New Event</h1>
 <hr />
 <div class="col-md-6">
+  <!-- (ngSubmit) ~ EVENT BINDING - CALLING SAVEEVENT METHOD FROM CREATE-EVENT.COMPONENT.TS -->
   <form
     #newEventForm="ngForm"
     (ngSubmit)="saveEvent(newEventForm.value)"
     autocomplete="off"
     novalidate
   >
+    <!-- ADDING ERROR CLASS IF INPUT IS NOT VALID AND HAS BEEN TOUCHED -->
     <div
       class="form-group"
       [ngClass]="{
@@ -16,6 +18,7 @@
       }"
     >
       <label for="eventName">Event Name:</label>
+      <!-- IF INPUT IS NOT VALID AND HAS BEEN TOUCHED IT SHOWS THE TEXT -->
       <em
         *ngIf="
           newEventForm.controls['name']?.invalid &&
@@ -23,6 +26,7 @@
         "
         >Required</em
       >
+      <!-- (ngModel) ~ EVENT BINDING -->
       <input
         (ngModel)="(newEvent.name)"
         name="name"
@@ -33,6 +37,7 @@
         placeholder="Name of your event..."
       />
     </div>
+    <!-- ADDING ERROR CLASS IF INPUT IS NOT VALID AND HAS BEEN TOUCHED -->
     <div
       class="form-group"
       [ngClass]="{
@@ -42,6 +47,7 @@
       }"
     >
       <label for="eventDate">Event Date:</label>
+      <!-- IF INPUT IS NOT VALID AND HAS BEEN TOUCHED IT SHOWS THE TEXT -->
       <em
         *ngIf="
           newEventForm.controls['date']?.invalid &&
@@ -49,6 +55,7 @@
         "
         >Required</em
       >
+      <!-- (ngModel) ~ EVENT BINDING -->
       <input
         (ngModel)="(newEvent.date)"
         name="date"

@@ -3,6 +3,8 @@
 </div>
 
 <div class="col-md-6">
+  <!-- [formGroup] ~ PROPERTY BINDING -->
+  <!-- (ngSubmit) ~ EVENT BINDING - CALLING SAVESESSION METHOD FROM CREATE-SESSION.COMPONENT.TS -->
   <form
     [formGroup]="newSessionForm"
     (ngSubmit)="saveSession(newSessionForm.value)"
@@ -91,6 +93,7 @@
       ></textarea>
     </div>
 
+    <!-- BUTTON IS DESABLED IF SESSION FORM IS INVALID -->
     <button
       type="submit"
       [disabled]="newSessionForm.invalid"
@@ -98,6 +101,7 @@
     >
       Save
     </button>
+    <!-- (click) ~ EVENT BINDING - CALLING CANCEL METHOD FROM CREATE-SESSION.COMPONENT.TS-->
     <button type="button" (click)="cancel()" class="btn btn-warning">
       Cancel
     </button>

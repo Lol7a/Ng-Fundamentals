@@ -2,11 +2,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'upvote',
-  styleUrls: ['./upvote.component.css'],
+  styleUrls: ['./upvote.component.scss'],
   template: `
+    <!-- (click) ~ EVENT BINDING - CALLING ONCLICK METHOD -->
     <div class="votingWidgetContainer pointable" (click)="onClick()">
       <div class="well votingWidget">
         <div class="votingButton">
+          <!-- IF USER HAS VOTED IT WILL SHOW THIS SVG -->
           <svg
             *ngIf="voted"
             xmlns="http://www.w3.org/2000/svg"
@@ -22,6 +24,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
             />
           </svg>
           <!-- <i *ngIf="voted" class="glyphicon glyphicon-heart"></i> -->
+          <!-- IF USER HAS NOT VOTED IT WILL SHOW THIS SVG -->
           <svg
             *ngIf="!voted"
             xmlns="http://www.w3.org/2000/svg"
@@ -45,10 +48,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   `,
 })
 export class UpvoteComponent {
+  // DEFINING INPUT PROPERTIES
   @Input() count: number;
   @Input() voted: boolean;
   @Output() vote = new EventEmitter();
 
+  // METHOD ON VOTING WIDGET
+  // WHEN CLICKED IT EMITS VOTING
   onClick() {
     this.vote.emit({});
     this.voted = true;

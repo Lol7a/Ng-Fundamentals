@@ -39,6 +39,7 @@ import { JQ_TOKEN } from './jQuery.service';
   ],
 })
 export class SimpleModalComponent {
+  //  DEFINING INPUT PROPERTIES
   @Input() title: string;
   @Input() elementId: string;
   @Input() closeOnBodyClick: string;

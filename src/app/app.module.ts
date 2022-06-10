@@ -40,6 +40,7 @@ let toastr: Toastr = window['toastr'];
 let jQuery = window['$'];
 
 @NgModule({
+  // MODULES
   imports: [
     BrowserModule,
     NgbModule,
@@ -48,6 +49,7 @@ let jQuery = window['$'];
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
   ],
+  // COMPONENTS, DIRECTIVES AND PIPES
   declarations: [
     EventsAppComponent,
     EventsListComponent,
@@ -65,6 +67,7 @@ let jQuery = window['$'];
     DurationPipe,
     LocationValidator,
   ],
+  // SERVICES
   providers: [
     EventService,
     EventListResolver,
@@ -80,6 +83,7 @@ let jQuery = window['$'];
 export class AppModule {}
 
 export function checkDirtyState(component: CreateEventComponent) {
+  // CANCELLATION OF CREATING AN EVENT
   if (component.isDirty) {
     return window.confirm(
       'You have not saved this event, do you really want to cancel?'

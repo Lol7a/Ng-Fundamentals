@@ -20,6 +20,7 @@ import { VoterService } from './voter.service';
   ],
 })
 export class SessionListComponent implements OnChanges {
+  // DEFINING INPUT PROPERTIES
   @Input() sessions: ISession[];
   @Input() filterBy: string;
   @Input() sortBy: string;
@@ -28,6 +29,9 @@ export class SessionListComponent implements OnChanges {
 
   constructor(public auth: AuthService, private voterService: VoterService) {}
 
+  // METHOD WHICH IS INVOKED BY CHANGES
+  // IT FILTERS (SORTS) THE SESSIONS BY
+  // THEIR NAME OR VOTING COUNT
   ngOnChanges() {
     if (this.sessions) {
       this.filterSessions(this.filterBy);
@@ -37,6 +41,10 @@ export class SessionListComponent implements OnChanges {
     }
   }
 
+  // METHOD ON UPVOTE IN SESSION-LIST.COMPONENT.HTML
+  // IF USER HAS ALREDY VOTED THAN IT SHOULD CALL
+  // DELETEVOTER METHOD AND REMOVE VOTER,
+  // OTHERWISE IT SOULD CALL ADDVOTER METHOD
   toggleVote(session: ISession) {
     if (this.userHasVoted(session)) {
       this.voterService.deleteVoter(
@@ -56,6 +64,7 @@ export class SessionListComponent implements OnChanges {
     }
   }
 
+  // METHOD THAT CHECKS IF CURRENT USER HAS VOTED
   userHasVoted(session: ISession) {
     return this.voterService.userHasVoted(
       session,

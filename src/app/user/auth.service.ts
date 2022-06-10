@@ -5,7 +5,7 @@ import { IUser } from './user.model';
 
 @Injectable()
 export class AuthService {
-  currentUser!: IUser;
+  currentUser!: IUser; // user.model.ts
 
   constructor(private http: HttpClient) {}
 

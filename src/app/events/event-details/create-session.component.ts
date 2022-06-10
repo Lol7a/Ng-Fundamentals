@@ -5,42 +5,14 @@ import { ISession } from '../shared/index';
 @Component({
   selector: 'create-session',
   templateUrl: './create-session.component.html',
-  styles: [
-    `
-      em {
-        float: right;
-        color: #e05c65;
-        padding-left: 10px;
-      }
-
-      .error input,
-      .error select,
-      .error textarea {
-        background-color: #e3c3c5;
-      }
-
-      .error ::-webkit-input-placeholder {
-        color: #999;
-      }
-
-      .error ::-moz-placeholder {
-        color: #999;
-      }
-
-      .error :-moz-placeholder {
-        color: #999;
-      }
-
-      .error :ms-input-placeholder {
-        color: #999;
-      }
-    `,
-  ],
+  styleUrls: ['./create-session.component.scss'],
 })
 export class CreateSessionComponent implements OnInit {
+  // DEFINING OUTPUT PROPERTIES
   @Output() saveNewSession = new EventEmitter();
   @Output() cancelAddSession = new EventEmitter();
 
+  // DEFINING FORM GROUPS AND FORM CONTROLS
   newSessionForm: FormGroup;
   name: FormControl;
   presenter: FormControl;
@@ -67,6 +39,8 @@ export class CreateSessionComponent implements OnInit {
     });
   }
 
+  // METHOD WHEN CREATE SESSION FORM IS SUBMITTED,
+  // IT EMITS SAVENEWSESSION METHOD FROM EVENT-DETAILS.COMPONENT.TS
   saveSession(formValues: any) {
     let session: ISession = {
       id: undefined,
@@ -80,6 +54,8 @@ export class CreateSessionComponent implements OnInit {
     this.saveNewSession.emit(session);
   }
 
+  // METHOD ON CANCEL BUTTON IN PROFILE.COMPONENT.HTML,
+  // IF CLICKED IT EMITS CANCELADDSESSION METHOD FROM EVENT-DETAILS.COMPONENT.TS
   cancel() {
     this.cancelAddSession.emit();
   }

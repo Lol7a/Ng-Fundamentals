@@ -1,42 +1,14 @@
 import { Component } from '@angular/core';
 import { EventService } from '../shared/event.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { IEvent, ISession } from '../shared/index';
 
 @Component({
   templateUrl: './event-details.component.html',
-  styles: [
-    `
-      .container {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-
-      .event-image {
-        height: 100px;
-      }
-
-      a {
-        cursor: pointer;
-      }
-
-      button {
-        background-color: #485563;
-        color: white;
-      }
-
-      .btn:hover {
-        background-color: rgba(55, 67, 79, 0.534);
-        color: white;
-      }
-
-      .active {
-        background-color: rgba(72, 85, 99, 0.517);
-      }
-    `,
-  ],
+  styleUrls: ['./event-details.component.scss'],
 })
 export class EventDetailsComponent {
+  // DECLARING ~ DEFINING PROPERTIES
   event: IEvent;
   addMode: boolean;
   filterBy: string = 'all';
@@ -58,6 +30,7 @@ export class EventDetailsComponent {
     this.addMode = true;
   }
 
+  // METHOD USED IN EVENT-DETAILS.COMPONENT.HTML
   saveNewSession(session: ISession) {
     const nextId = Math.max.apply(
       null,
@@ -69,6 +42,9 @@ export class EventDetailsComponent {
     this.addMode = false;
   }
 
+  // METHOD USED IN EVENT-DETAILS.COMPONENT.HTML
+  // IT CANCELS ADDING SESSION BY TOGGLING ADDMODE
+  // FROM TRUE TO FALSE
   cancelAddSession() {
     this.addMode = false;
   }

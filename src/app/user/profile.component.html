@@ -3,14 +3,18 @@
   <hr />
 
   <div class="col-md-4">
+    <!-- [formGroup] ~ PROPERTY BINDING -->
+    <!-- (ngSubmit) ~ EVENT BINDING - CALLING SAVEPROFILE METHOD FROM PROFILE.COMPONENT.TS -->
     <form
       [formGroup]="profileForm"
       (ngSubmit)="saveProfile(profileForm.value)"
       autocomplete="off"
       novalidate
     >
+      <!-- [ngClass] ~ ADDING ERROR CSS CLASS IF FIRST NAME IS NOT VALIDATED -->
       <div class="form-group" [ngClass]="{ error: !validateFirstName() }">
         <label for="firstName">First Name: </label>
+        <!-- IF FIRST NAME IS NOT VALID IT AND IS NOT ADDED IT SHOWS THIS TEXT -->
         <em
           *ngIf="
             !validateFirstName() &&
@@ -19,6 +23,7 @@
         >
           Required
         </em>
+        <!-- IF FIRST NAME IS NOT MEETING THE REQUIRED PATTERN IT SHOWS THIS TEXT -->
         <em
           *ngIf="
             !validateFirstName() &&
@@ -36,8 +41,10 @@
         />
       </div>
 
+      <!-- [ngClass] ~ ADDING ERROR CSS CLASS IF LAST NAME IS NOT VALIDATED -->
       <div class="form-group" [ngClass]="{ error: !validateLastName() }">
         <label for="lastName">Last Name: </label>
+        <!-- IF LAST NAME IS NOT VALID IT AND IS NOT ADDED IT SHOWS THIS TEXT -->
         <em *ngIf="!validateLastName()">Required</em>
         <input
           formControlName="lastName"
@@ -50,10 +57,12 @@
       </div>
 
       <button class="btn btn-primary" type="submit">Save</button>
+      <!-- (click) ~ EVENT BINDING - CALLING CANCEL METHOD FROM PROFILE.COMPONENT.TS-->
       <button class="btn btn-warning" type="button" (click)="cancel()">
         Cancel
       </button>
 
+      <!-- (click) ~ EVENT BINDING - CALLING LOGOUT METHOD FROM PROFILE.COMPONENT.TS-->
       <button
         type="button"
         class="btn btn-warning"

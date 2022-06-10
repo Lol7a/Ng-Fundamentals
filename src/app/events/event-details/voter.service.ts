@@ -7,6 +7,9 @@ import { ISession } from '../shared';
 export class VoterService {
   constructor(private http: HttpClient) {}
 
+  // METHOD THAT IS SUPPOSED TO DELETE A VOTER
+  // BUT IT DOESN'T WORK
+  // DIDN'T FIGURE OUT WHY xD
   deleteVoter(eventId: number, session: ISession, voterName: string) {
     session.voters = session.voters.filter((voter) => voter !== voterName);
 
@@ -17,6 +20,8 @@ export class VoterService {
       .subscribe();
   }
 
+  // METHOD THAT ADDS A VOTER
+  // NOT SURE HOW IT WORKS
   addVoter(eventId: number, session: ISession, voterName: string) {
     session.voters.push(voterName);
 
@@ -34,6 +39,7 @@ export class VoterService {
     return session.voters.some((voter) => voter === voterName);
   }
 
+  // METHOD FOR HANDLINNG AN ERROR
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
   ],
 })
 export class LoginComponent {
+  // DECLARING ~ DEFINING PROPERTIES
   userName: any;
   password: any;
   mouseoverLogin: boolean;
@@ -22,6 +23,10 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  // METHOD ON FORM IN LOGIN.COMPONENT.HTML,
+  // WHEN USERS LOG IN FORM IS SUBMITTED, CHECKS IF FORM IS VALID,
+  // WAITING FORR RESPONSE, IF RESPONSE IS FALSE THAT THE FORM IS INVALID,
+  // IF RESPONS IS VALID IT TAKES US TO ALL EVENTS PAGE
   login(formValues: any) {
     this.authService
       .loginUser(formValues.userName, formValues.password)
@@ -34,6 +39,9 @@ export class LoginComponent {
       });
   }
 
+  // METHOD ON BUTTON IN LOGIN.COMPONENT.HTML,
+  // IF CLICKED IT CANCELS LOG IN AND
+  // NAVIGATES US TO ALL EVENTS PAGE
   cancel() {
     this.router.navigate(['events']);
   }

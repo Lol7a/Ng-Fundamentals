@@ -1,0 +1,26 @@
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.event-image {
+  height: 100px;
+}
+
+a {
+  cursor: pointer;
+}
+
+button {
+  background-color: #485563;
+  color: white;
+}
+
+.btn:hover {
+  background-color: rgba(55, 67, 79, 0.534);
+  color: white;
+}
+
+.active {
+  background-color: rgba(72, 85, 99, 0.517);
+}

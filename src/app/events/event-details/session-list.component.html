@@ -1,6 +1,10 @@
 <div class="row" *ngFor="let session of visibleSessions">
   <div class="col-md-1">
+    <!-- IT WILL SHOW THIS CONTENT IF CURRENT USER IS AUTHENTICATED -->
     <div *ngIf="auth.isAuthenticated()">
+      <!-- (vote) ~ EVENT BINDING - CALLING TOGGLEVOTE METHOD FROM SESSION-LIST.COMPONENT.TS -->
+      <!-- [count] AND [voted] ~ PROPERTY BINDINGS -->
+      <!-- KEEPS TRACK OF VOTE COUNT AND CALLING METHOD USERHASVOTED FROM SESSION-LIST.COMPONENT.TS -->
       <upvote
         (vote)="toggleVote(session)"
         [count]="session.voters.length"
@@ -13,6 +17,7 @@
     <collapsible-well>
       <div well-title>
         {{ session.name }}
+        <!-- IT WILL SHOW THIS SVG IF THAT SESSION HAS MORE THAN 3 VOTES -->
         <svg
           *ngIf="session.voters.length > 3"
           xmlns="http://www.w3.org/2000/svg"

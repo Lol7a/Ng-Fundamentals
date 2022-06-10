@@ -42,10 +42,10 @@ ul li:not(:last-of-type) {
 
 .btn {
   color: white;
-}
 
-.btn:hover {
-  background-color: rgba(55, 67, 79, 0.534);
+  &:hover {
+    background-color: rgba(55, 67, 79, 0.534);
+  }
 }
 
 @media (max-width: 1200px) {

@@ -35,11 +35,15 @@ import { EventService } from './shared/index';
   ],
 })
 export class CreateEventComponent {
+  // DECLARING ~ DEFINING PROPERTIES
   newEvent: any;
   isDirty: boolean = true;
 
   constructor(private router: Router, private eventService: EventService) {}
 
+  // METHOD ON FORM IN CREATE-EVENT.COMPONENT.HTML
+  // SAVES CREATED EVENT AND NAVIGATES US BACK TO
+  // ALL EVENTS PAGE
   saveEvent(formValues: any) {
     this.eventService.saveEvent(formValues).subscribe(() => {
       this.isDirty = false;
@@ -47,6 +51,9 @@ export class CreateEventComponent {
     });
   }
 
+  // METHOD ON CANCEL BUTTON IN CREATE-EVENT.COMPONENT.HTML
+  // CANCELS CREATING EVENT AND NAVIGATES
+  // US BACK TO ALL EVENTS PAGE
   cancel() {
     this.router.navigate(['/events']);
   }

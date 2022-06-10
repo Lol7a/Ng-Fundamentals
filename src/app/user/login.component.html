@@ -1,6 +1,7 @@
 <h1>Login</h1>
 <hr />
 <div class="col-md-4">
+  <!-- (ngSubmit) ~ EVENT BINDING - CALLING LOGIN METHOD FROM PROFILE.COMPONENT.TS -->
   <form
     #loginForm="ngForm"
     (ngSubmit)="login(loginForm.value)"
@@ -8,6 +9,7 @@
   >
     <div class="form-group">
       <label for="userName">User Name: </label>
+      <!-- IF USERNAME IS NOT VALID AND IT HAS BEEN TOUCHED IT SHOWS THIS TEXT -->
       <em
         *ngIf="
           loginForm.controls['userName']?.invalid &&
@@ -16,6 +18,7 @@
       >
         Required
       </em>
+      <!-- TWO-WAY BINDING FOR USERNAME -->
       <input
         [(ngModel)]="userName"
         name="userName"
@@ -29,6 +32,7 @@
 
     <div class="form-group">
       <label for="password">Password: </label>
+      <!-- IF PASSWORD IS NOT VALID AND IT HAS BEEN TOUCHED IT SHOWS THIS TEXT -->
       <em
         *ngIf="
           loginForm.controls['password']?.invalid &&
@@ -37,6 +41,7 @@
       >
         Required
       </em>
+      <!-- TWO-WAY BINDING FOR PASSWORD -->
       <input
         [(ngModel)]="password"
         name="password"
@@ -52,6 +57,7 @@
       (mouseenter)="mouseoverLogin = true"
       (mouseleave)="mouseoverLogin = false"
     >
+      <!-- PROPERTY BINDING - DISABLES A BUTTON IF FORM IS INVALID -->
       <button
         type="submit"
         [disabled]="loginForm.invalid"
@@ -60,10 +66,12 @@
         Login
       </button>
     </span>
+    <!-- (click) ~ EVENT BINDING - CALLING LOGOUT METHOD FROM LOGIN.COMPONENT.TS-->
     <button type="button" (click)="cancel()" class="btn btn-warning">
       Cancel
     </button>
   </form>
   <br />
+  <!-- SHOES ALERT IF FORM IS NOT VALID -->
   <div *ngIf="loginInvalid" class="alert alert-danger">Invalid Login Info</div>
 </div>
