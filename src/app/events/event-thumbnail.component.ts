@@ -4,7 +4,7 @@ import { IEvent } from './shared/event.model';
 @Component({
   selector: 'event-thumbnail',
   template: `
-    <div [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
+    <div [routerLink]="['/events', event.id]" class="well thumbnail">
       <h2>{{ event?.name | uppercase }}</h2>
       <div>Date: {{ event?.date | date: 'shortDate' }}</div>
       <!-- ADDING CSS CLASS BASED ON THE TIME -->
@@ -29,11 +29,7 @@ import { IEvent } from './shared/event.model';
   styles: [
     `
       .green {
-        color: #03a903 !important;
-      }
-
-      .red {
-        color: red !important;
+        color: #0fae61 !important;
       }
 
       .bold {
@@ -63,11 +59,9 @@ export class EventThumbnailComponent {
   // METHOD THAT SETS DIFFERENT STYLES BASED ON THE TIME
   getStartTimeClass() {
     const isEarlyStart = this.event && this.event.time === '8:00 am';
-    const isLateStart = this.event && this.event.time === '10:00 am';
 
     return {
       green: isEarlyStart,
-      red: isLateStart,
       bold: isEarlyStart,
     };
   }

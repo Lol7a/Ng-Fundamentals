@@ -1,14 +1,13 @@
-<div class="navbar navbar-default">
+<div class="navbar">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a href="" class="navbar-brand">ngEvents</a>
-    </div>
+    <a href="" class="navbar-brand">ngEvents</a>
 
     <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
+      <ul class="navbar-nav">
+        <li class="nav-item">
           <!-- ROUTES -->
           <a
+            class="nav-link"
             [routerLink]="['/events']"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
@@ -16,54 +15,79 @@
             All Events
           </a>
         </li>
-        <li>
+
+        <li class="nav-item">
           <!-- ROUTES -->
-          <a [routerLink]="['/events/new']" routerLinkActive="active">
+          <a
+            class="nav-link"
+            [routerLink]="['/events/new']"
+            routerLinkActive="active"
+          >
             Create Event
           </a>
         </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            role="button"
+          >
             Events
             <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu">
+          <ul
+            class="dropdown-menu dropdown-menu-dark"
+            aria-labelledby="navbarDropdown"
+          >
             <li>
-              <a href="#">Angular Connect</a>
+              <!-- <a [routerLink]="['/events', event.id]" class="dropdown-item" -->
+              <a (click)="onSelectedDropdown()" class="dropdown-item"
+                >Angular Connect</a
+              >
             </li>
           </ul>
         </li>
       </ul>
 
       <!-- (ngSubmit) ~ EVENT BINDING - CALLING SEARCHSESSIONS METHOD FROM NAVBAR.COMPONENT.TS -->
-      <form
+      <!-- <form
         id="searchForm"
         (ngSubmit)="searchSessions(searchTerm)"
         class="navbar-form navbar-right"
-      >
-        <div class="form-group">
-          <!-- TWO-WAY BINDING FOR SEARCHTERM -->
-          <input
-            [(ngModel)]="searchTerm"
-            name="searchTerm"
-            type="text"
-            class="form-control"
-            placeholder="Search Sessions"
-          />
-        </div>
-        <button class="btn btn-default" modal-trigger="searchResults">
-          Search
-        </button>
+      > -->
+      <form id="searchForm" (ngSubmit)="searchSessions(searchTerm)">
+        <!-- <div class="form-group"> -->
+        <!-- TWO-WAY BINDING FOR SEARCHTERM -->
+        <input
+          [(ngModel)]="searchTerm"
+          name="searchTerm"
+          type="text"
+          class="form-control me-2"
+          placeholder="Search Sessions"
+        />
+        <!-- </div> -->
+        <button class="btn" modal-trigger="searchResults">Search</button>
       </form>
-      <div class="navbar-header navbar-right">
-        <ul class="nav navbar-nav">
-          <li>
+
+      <!-- <div class="navbar-header navbar-right"> -->
+      <div>
+        <ul class="navbar-nav">
+          <li class="nav-item">
             <!-- SHOWS THIS TEXT IF USER IS NOT LOGGED IN -->
-            <a *ngIf="!auth.isAuthenticated()" [routerLink]="['user/login']">
+            <a
+              class="nav-link"
+              *ngIf="!auth.isAuthenticated()"
+              [routerLink]="['user/login']"
+            >
               Login
             </a>
             <!-- SHOWS THIS TEXT IF USER IS LOGGED IN -->
-            <a *ngIf="auth.isAuthenticated()" [routerLink]="['user/profile']">
+            <a
+              class="nav-link"
+              *ngIf="auth.isAuthenticated()"
+              [routerLink]="['user/profile']"
+            >
               Welcome {{ auth.currentUser.firstName }}
             </a>
           </li>

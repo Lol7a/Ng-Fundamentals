@@ -11,12 +11,19 @@ declare let toastr: any;
       <h1>Upcoming Angular Events</h1>
       <hr />
       <div class="row g-3">
-        <div *ngFor="let event of events" class="col-md-5">
+        <div *ngFor="let event of events" class="col-md-6">
           <event-thumbnail [event]="event"></event-thumbnail>
         </div>
       </div>
     </div>
   `,
+  styles: [
+    `
+      .col-4 {
+        padding: 5px;
+      }
+    `,
+  ],
 })
 export class EventsListComponent implements OnInit {
   events: IEvent[];

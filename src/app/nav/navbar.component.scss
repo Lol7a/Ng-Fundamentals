@@ -1,19 +1,36 @@
 a {
-  color: white;
-  text-decoration: none;
+  color: #bbb;
 }
 
 li:hover {
-  background-color: rgba(55, 67, 79, 0.534);
+  // background-color: rgba(55, 67, 79, 0.534);
+  // background-color: #485563;
+
+  border-radius: 5px;
 }
 
 li > a.active {
-  color: #f97924;
+  color: rgb(78, 184, 133);
+}
+
+.nav-link:hover {
+  color: white;
 }
 
 .container-fluid {
   flex-wrap: nowrap;
-  background-color: #485563;
+  background-color: #262634;
+
+  // background-color: #485563;
+}
+
+.dropdown-menu {
+  position: absolute;
+  cursor: pointer;
+
+  &-dark {
+    background-color: #262634;
+  }
 }
 
 .collapse:not(.show) {
@@ -41,10 +58,10 @@ ul li:not(:last-of-type) {
 }
 
 .btn {
-  color: white;
+  color: #bbb;
 
   &:hover {
-    background-color: rgba(55, 67, 79, 0.534);
+    color: #fff;
   }
 }
 
