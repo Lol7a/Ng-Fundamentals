@@ -1,0 +1,19 @@
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-save {
+  background-color: rgb(15, 174, 97);
+  color: white;
+
+  &:hover {
+    background-color: rgb(78, 184, 133);
+  }
+}
+
+input {
+  &.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+}

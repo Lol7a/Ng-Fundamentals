@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { EventService } from '../shared/event.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IEvent, ISession } from '../shared/index';
+import { AuthService } from 'src/app/user/auth.service';
 
 @Component({
   templateUrl: './event-details.component.html',
@@ -10,13 +11,16 @@ import { IEvent, ISession } from '../shared/index';
 export class EventDetailsComponent {
   // DECLARING ~ DEFINING PROPERTIES
   event: IEvent;
+  id: number;
   addMode: boolean;
   filterBy: string = 'all';
   sortBy: string = 'votes';
 
   constructor(
     private eventService: EventService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    public auth: AuthService
   ) {}
 
   ngOnInit() {
@@ -47,5 +51,9 @@ export class EventDetailsComponent {
   // FROM TRUE TO FALSE
   cancelAddSession() {
     this.addMode = false;
+  }
+
+  onEditRecipe() {
+    this.router.navigate(['edit'], { relativeTo: this.route });
   }
 }

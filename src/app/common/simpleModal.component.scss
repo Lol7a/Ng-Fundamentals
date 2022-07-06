@@ -1,0 +1,16 @@
+.modal-content {
+  background-color: #2e2e3e;
+}
+
+.modal-header {
+  border-bottom: 1px solid #4eb885;
+}
+
+.btn-green {
+  background-color: rgb(15, 174, 97);
+  color: white;
+
+  &:hover {
+    background-color: rgb(78, 184, 133);
+  }
+}

@@ -4,8 +4,9 @@ import { AuthService } from './user/auth.service';
 @Component({
   selector: 'events-app',
   template: `
-    <nav-bar></nav-bar>
+    <!-- <nav-bar></nav-bar> -->
     <router-outlet></router-outlet>
+    <router-outlet name="secondary"></router-outlet>
   `,
 })
 export class EventsAppComponent {

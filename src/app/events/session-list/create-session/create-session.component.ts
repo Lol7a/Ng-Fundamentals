@@ -1,6 +1,6 @@
 import { Component, Output, OnInit, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ISession } from '../shared/index';
+import { ISession } from '../../shared/index';
 
 @Component({
   selector: 'create-session',

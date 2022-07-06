@@ -11,16 +11,30 @@ a {
   cursor: pointer;
 }
 
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 button {
-  background-color: #485563;
+  background-color: rgb(15, 174, 97);
   color: white;
+
+  &:hover {
+    background-color: rgb(78, 184, 133);
+    color: white;
+  }
+
+  &.active {
+    background-color: rgb(78, 184, 133);
+  }
 }
 
-.btn:hover {
-  background-color: rgba(55, 67, 79, 0.534);
-  color: white;
-}
+.add-session {
+  color: #bbb;
 
-.active {
-  background-color: rgba(72, 85, 99, 0.517);
+  &:hover {
+    color: white;
+  }
 }

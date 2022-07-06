@@ -1,0 +1,242 @@
+<div *ngIf="!auth.isAuthenticated()">
+  <h4>User needs to Login to Create an Event!</h4>
+</div>
+
+<div *ngIf="auth.isAuthenticated()">
+  <h1>New Event</h1>
+  <hr />
+  <div class="col-md-6">
+    <!-- (ngSubmit) ~ EVENT BINDING - CALLING SAVEEVENT METHOD FROM CREATE-EVENT.COMPONENT.TS -->
+    <form
+      [formGroup]="newEventForm"
+      (ngSubmit)="saveEvent(newEventForm.value)"
+      class="mb-4"
+    >
+      <!-- ADDING ERROR CLASS IF INPUT IS NOT VALID AND HAS BEEN TOUCHED -->
+      <div
+        class="form-group mb-2"
+        [ngClass]="{
+          error:
+            newEventForm.get('name')?.invalid &&
+            newEventForm.get('name')?.touched
+        }"
+      >
+        <label class="form-label" for="name">Event Name:</label>
+        <!-- IF INPUT IS NOT VALID AND HAS BEEN TOUCHED IT SHOWS THE TEXT -->
+        <em
+          *ngIf="
+            newEventForm.get('name')?.invalid &&
+            newEventForm.get('name')?.touched
+          "
+        >
+          Required
+        </em>
+        <!-- (ngModel) ~ EVENT BINDING -->
+        <input
+          name="name"
+          id="name"
+          type="text"
+          class="form-control"
+          formControlName="name"
+          placeholder="Name of your event..."
+        />
+      </div>
+      <!-- ADDING ERROR CLASS IF INPUT IS NOT VALID AND HAS BEEN TOUCHED -->
+      <div
+        class="form-group mb-2"
+        [ngClass]="{
+          error:
+            newEventForm.get('date')?.invalid &&
+            newEventForm.get('date')?.touched
+        }"
+      >
+        <label class="form-label" for="date">Event Date:</label>
+        <!-- IF INPUT IS NOT VALID AND HAS BEEN TOUCHED IT SHOWS THE TEXT -->
+        <em
+          *ngIf="
+            newEventForm.get('date')?.invalid &&
+            newEventForm.get('date')?.touched
+          "
+        >
+          Required
+        </em>
+        <!-- (ngModel) ~ EVENT BINDING -->
+        <input
+          name="date"
+          required
+          id="date"
+          type="date"
+          class="form-control"
+          formControlName="date"
+          placeholder="format (mm/dd/yyyy)..."
+        />
+      </div>
+      <div
+        class="form-group mb-2"
+        [ngClass]="{
+          error:
+            newEventForm.get('time')?.invalid &&
+            newEventForm.get('time')?.touched
+        }"
+      >
+        <label class="form-label" for="time">Event Time:</label>
+        <em
+          *ngIf="
+            newEventForm.get('time')?.invalid &&
+            newEventForm.get('time')?.touched
+          "
+        >
+          Required
+        </em>
+        <input
+          name="time"
+          id="time"
+          type="time"
+          class="form-control"
+          formControlName="time"
+          placeholder="start time..."
+        />
+      </div>
+      <div
+        class="form-group mb-2"
+        [ngClass]="{
+          error:
+            newEventForm.get('price')?.invalid &&
+            newEventForm.get('price')?.touched
+        }"
+      >
+        <label class="form-label" for="price">Event Price:</label>
+        <em
+          *ngIf="
+            newEventForm.get('price')?.invalid &&
+            newEventForm.get('price')?.touched
+          "
+        >
+          Required
+        </em>
+        <input
+          name="price"
+          id="price"
+          type="number"
+          class="form-control"
+          formControlName="price"
+          placeholder="event price..."
+        />
+      </div>
+
+      <div formGroupName="location" validateLocation>
+        <div class="form-group mb-2">
+          <label class="form-label" for="address">Event Location:</label>
+          <em
+            *ngIf="
+              newEventForm.get('location')?.invalid &&
+              newEventForm.get('location')?.touched
+            "
+          >
+            You must enter either the full location OR an online Url
+          </em>
+          <input
+            name="address"
+            id="address"
+            type="text"
+            class="form-control"
+            formControlName="address"
+            placeholder="Address of event..."
+          />
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <input
+              name="city"
+              id="city"
+              type="text"
+              class="form-control"
+              formControlName="city"
+              placeholder="City..."
+            />
+          </div>
+          <div class="col-md-6">
+            <input
+              name="country"
+              id="country"
+              type="text"
+              class="form-control"
+              formControlName="country"
+              placeholder="Country..."
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mb-2">
+        <label class="form-label" for="onlineUrl">Online Url:</label>
+        <input
+          name="onlineUrl"
+          id="onlineUrl"
+          type="text"
+          class="form-control"
+          formControlName="onlineUrl"
+          placeholder="Online Url..."
+          (change)="
+            newEventForm.get('location.address')?.updateValueAndValidity()
+          "
+        />
+      </div>
+      <div
+        class="form-group mb-2"
+        [ngClass]="{
+          error:
+            newEventForm.get('imageUrl')?.invalid &&
+            newEventForm.get('imageUrl')?.touched
+        }"
+      >
+        <label class="form-label" for="imageUrl">Image:</label>
+        <em
+          *ngIf="
+            newEventForm.get('imageUrl')?.invalid &&
+            newEventForm.get('imageUrl')?.touched &&
+            (newEventForm.get('imageUrl')?.errors)!['required']
+          "
+        >
+          Required
+        </em>
+        <em
+          *ngIf="
+            newEventForm.get('imageUrl')?.invalid &&
+            newEventForm.get('imageUrl')?.touched &&
+            (newEventForm.get('imageUrl')?.errors)!['pattern']
+          "
+        >
+          Must be a png or jpg url
+        </em>
+        <input
+          name="imageUrl"
+          id="imageUrl"
+          type="text"
+          class="form-control"
+          formControlName="imageUrl"
+          placeholder="url of image..."
+        />
+        <img
+          [src]="newEventForm.get('imageUrl')?.value"
+          *ngIf="newEventForm.get('imageUrl')?.valid"
+          class="img-thumbnail"
+          style="border: none; background-color: transparent"
+        />
+      </div>
+
+      <div class="flex">
+        <button
+          type="submit"
+          [disabled]="newEventForm.invalid"
+          class="btn btn-save"
+        >
+          Save
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

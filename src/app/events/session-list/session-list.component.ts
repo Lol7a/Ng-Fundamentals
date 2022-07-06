@@ -1,23 +1,13 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { ISession } from '../shared/index';
+import { EventService, ISession } from '../shared/index';
 import { AuthService } from 'src/app/user/auth.service';
-import { VoterService } from './voter.service';
+import { VoterService } from '../vote/voter.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'session-list',
   templateUrl: './session-list.component.html',
-  styles: [
-    `
-      collapsible-well h6 {
-        margin-top: -5px;
-        margin-bottom: 10px;
-      }
-
-      span {
-        display: block;
-      }
-    `,
-  ],
+  styleUrls: ['./session-list.component.scss'],
 })
 export class SessionListComponent implements OnChanges {
   // DEFINING INPUT PROPERTIES
@@ -25,19 +15,27 @@ export class SessionListComponent implements OnChanges {
   @Input() filterBy: string;
   @Input() sortBy: string;
   @Input() eventId: number;
+  sessionsChanged = new Subject<ISession[]>();
   visibleSessions: ISession[] = [];
+  id: number;
 
-  constructor(public auth: AuthService, private voterService: VoterService) {}
+  constructor(
+    public auth: AuthService,
+    private voterService: VoterService,
+    private eventService: EventService
+  ) {}
 
   // METHOD WHICH IS INVOKED BY CHANGES
   // IT FILTERS (SORTS) THE SESSIONS BY
   // THEIR NAME OR VOTING COUNT
   ngOnChanges() {
+    console.log(this.sessions);
     if (this.sessions) {
       this.filterSessions(this.filterBy);
       this.sortBy === 'name'
         ? this.visibleSessions.sort(sortByNameAsc)
         : this.visibleSessions.sort(sortByVotesDesc);
+      console.log(this.visibleSessions);
     }
   }
 
@@ -66,10 +64,23 @@ export class SessionListComponent implements OnChanges {
 
   // METHOD THAT CHECKS IF CURRENT USER HAS VOTED
   userHasVoted(session: ISession) {
+    console.log(
+      'User has voted!' + this.visibleSessions['currentUser']?.userName
+    );
     return this.voterService.userHasVoted(
       session,
-      this.visibleSessions['currentUser']?.userName
+      this.auth.currentUser.userName
     );
+  }
+
+  deleteSession(index: number) {
+    this.visibleSessions.splice(index, 1);
+    this.sessionsChanged.next(this.sessions.slice());
+  }
+
+  onDeleteSession() {
+    this.deleteSession(this.id);
+    console.log(this.id);
   }
 
   filterSessions(filter: any) {

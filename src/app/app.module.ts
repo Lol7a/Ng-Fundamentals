@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import {
   EventsListComponent,
@@ -33,8 +34,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavBarComponent } from './nav/navbar.component';
 import { Error404Component } from './errors/404.component';
 
-import { appRoutes } from './routes';
+import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './user/auth.service';
+import { DropdownComponent } from './nav/dropdown/dropdown.component';
+import { EventEditComponent } from './events/event-edit/event-edit.component';
 
 let toastr: Toastr = window['toastr'];
 let jQuery = window['$'];
@@ -46,8 +49,9 @@ let jQuery = window['$'];
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,
     HttpClientModule,
+    NgxPaginationModule,
   ],
   // COMPONENTS, DIRECTIVES AND PIPES
   declarations: [
@@ -66,6 +70,8 @@ let jQuery = window['$'];
     UpvoteComponent,
     DurationPipe,
     LocationValidator,
+    DropdownComponent,
+    EventEditComponent,
   ],
   // SERVICES
   providers: [

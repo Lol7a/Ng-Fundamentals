@@ -1,10 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, Observable, of, Subject } from 'rxjs';
 import { IEvent, ISession } from './event.model';
 
 @Injectable()
 export class EventService {
+  public foundEvent: IEvent;
+
   constructor(private http: HttpClient) {}
 
   getEvents(): Observable<IEvent[]> {
@@ -32,6 +34,24 @@ export class EventService {
     return this.http
       .get<ISession[]>('/api/sessions/search?search=' + searchTerm)
       .pipe(catchError(this.handleError<ISession[]>('searchSessions')));
+  }
+
+  editEvent(date: Date, time: string, price: number) {
+    this.foundEvent.date = date;
+    this.foundEvent.time = time;
+    this.foundEvent.price = price;
+
+    // this.foundEvent[index] = newEvent;
+    // this.eventsChanged.next(this.events.slice());
+
+    let options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+    return this.http.put(
+      `api/events/${this.foundEvent.id}`,
+      this.foundEvent,
+      options
+    );
   }
 
   // METHOD FOR HANDLINNG AN ERROR

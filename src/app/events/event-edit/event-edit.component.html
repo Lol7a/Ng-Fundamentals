@@ -1,0 +1,74 @@
+<div class="container">
+  <h1>Edit Event</h1>
+  <hr />
+  <h3>{{ event.name }}</h3>
+  <div class="row">
+    <div class="col-md-6">
+      <form
+        [formGroup]="eventEditForm"
+        (ngSubmit)="updateEvent(eventEditForm.value)"
+      >
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group mb-2">
+              <label class="form-label" for="date">Date</label>
+              <input
+                formControlName="date"
+                type="date"
+                id="date"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group mb-2">
+              <label class="form-label" for="time">Time</label>
+              <input
+                formControlName="time"
+                type="time"
+                id="time"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group mb-2">
+              <label class="form-label" for="price">Price</label>
+              <input
+                formControlName="price"
+                type="number"
+                id="price"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 flex">
+            <button
+              type="submit"
+              class="btn btn-save"
+              [disabled]="!eventEditForm.valid"
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="onCancel()"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

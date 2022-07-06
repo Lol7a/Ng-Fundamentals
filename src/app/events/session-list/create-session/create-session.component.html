@@ -9,8 +9,12 @@
     [formGroup]="newSessionForm"
     (ngSubmit)="saveSession(newSessionForm.value)"
     autocomplete="off"
+    class="mb-4"
   >
-    <div class="form-group" [ngClass]="{ error: name.invalid && name.dirty }">
+    <div
+      class="form-group mb-2"
+      [ngClass]="{ error: name.invalid && name.dirty }"
+    >
       <label for="sessionName">Session Name:</label>
       <em *ngIf="name.invalid && name.dirty">Required</em>
       <input
@@ -23,7 +27,7 @@
     </div>
 
     <div
-      class="form-group"
+      class="form-group mb-2"
       [ngClass]="{ error: presenter.invalid && presenter.dirty }"
     >
       <label for="eventDate">Presenter:</label>
@@ -38,7 +42,7 @@
     </div>
 
     <div
-      class="form-group"
+      class="form-group mb-2"
       [ngClass]="{ error: duration.invalid && duration.dirty }"
     >
       <label for="duration">Duration:</label>
@@ -52,7 +56,10 @@
       </select>
     </div>
 
-    <div class="form-group" [ngClass]="{ error: level.invalid && level.dirty }">
+    <div
+      class="form-group mb-2"
+      [ngClass]="{ error: level.invalid && level.dirty }"
+    >
       <label for="level">Level:</label>
       <em *ngIf="level.invalid && level.dirty">Required</em>
       <select formControlName="level" class="form-control">
@@ -64,7 +71,7 @@
     </div>
 
     <div
-      class="form-group"
+      class="form-group mb-2"
       [ngClass]="{ error: abstract.invalid && abstract.dirty }"
     >
       <label for="abstract">Abstract:</label>
@@ -93,17 +100,19 @@
       ></textarea>
     </div>
 
-    <!-- BUTTON IS DESABLED IF SESSION FORM IS INVALID -->
-    <button
-      type="submit"
-      [disabled]="newSessionForm.invalid"
-      class="btn btn-primary"
-    >
-      Save
-    </button>
-    <!-- (click) ~ EVENT BINDING - CALLING CANCEL METHOD FROM CREATE-SESSION.COMPONENT.TS-->
-    <button type="button" (click)="cancel()" class="btn btn-warning">
-      Cancel
-    </button>
+    <div class="flex">
+      <!-- BUTTON IS DESABLED IF SESSION FORM IS INVALID -->
+      <button
+        type="submit"
+        [disabled]="newSessionForm.invalid"
+        class="btn btn-save"
+      >
+        Save
+      </button>
+      <!-- (click) ~ EVENT BINDING - CALLING CANCEL METHOD FROM CREATE-SESSION.COMPONENT.TS-->
+      <button type="button" (click)="cancel()" class="btn btn-secondary">
+        Cancel
+      </button>
+    </div>
   </form>
 </div>

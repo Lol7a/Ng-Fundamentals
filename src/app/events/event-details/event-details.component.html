@@ -1,5 +1,12 @@
 <div class="container">
-  <img [src]="event.imageUrl" [alt]="event.name" class="event-image" />
+  <div class="flex">
+    <img [src]="event.imageUrl" [alt]="event.name" class="event-image" />
+    <div *ngIf="auth.isAuthenticated()">
+      <button class="btn btn-default" (click)="onEditRecipe()">
+        Edit Event
+      </button>
+    </div>
+  </div>
 
   <div class="row">
     <div class="col-md-11">
@@ -9,7 +16,7 @@
 
   <div class="row">
     <div class="col-md-6">
-      <div><strong>Date:</strong> {{ event.date | date: "shortDate" }}</div>
+      <div><strong>Date:</strong> {{ event.date | date: "mediumDate" }}</div>
       <div><strong>Time:</strong> {{ event.time }}</div>
       <div><strong>Price:</strong> {{ event.price | currency: "USD" }}</div>
     </div>
@@ -87,7 +94,7 @@
       <!-- CALLS A METHOD FROM EVENT-DETAILS.COMPONENT.TS -->
       <!-- WHEN CLICKED IT TOGGLES ADDMODE FROM FALSE TO TRUE -->
       <!-- AND TRIGGERS CREATE SESSION -->
-      <a (click)="addSession()">Add Session</a>
+      <a class="add-session" (click)="addSession()">Add Session</a>
     </div>
   </div>
 

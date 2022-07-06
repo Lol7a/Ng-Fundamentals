@@ -12,8 +12,8 @@
       novalidate
     >
       <!-- [ngClass] ~ ADDING ERROR CSS CLASS IF FIRST NAME IS NOT VALIDATED -->
-      <div class="form-group" [ngClass]="{ error: !validateFirstName() }">
-        <label for="firstName">First Name: </label>
+      <div class="form-group mb-2" [ngClass]="{ error: !validateFirstName() }">
+        <label class="form-label" for="firstName">First Name: </label>
         <!-- IF FIRST NAME IS NOT VALID IT AND IS NOT ADDED IT SHOWS THIS TEXT -->
         <em
           *ngIf="
@@ -42,8 +42,8 @@
       </div>
 
       <!-- [ngClass] ~ ADDING ERROR CSS CLASS IF LAST NAME IS NOT VALIDATED -->
-      <div class="form-group" [ngClass]="{ error: !validateLastName() }">
-        <label for="lastName">Last Name: </label>
+      <div class="form-group mb-2" [ngClass]="{ error: !validateLastName() }">
+        <label class="form-label" for="lastName">Last Name: </label>
         <!-- IF LAST NAME IS NOT VALID IT AND IS NOT ADDED IT SHOWS THIS TEXT -->
         <em *ngIf="!validateLastName()">Required</em>
         <input
@@ -56,21 +56,25 @@
         />
       </div>
 
-      <button class="btn btn-primary" type="submit">Save</button>
-      <!-- (click) ~ EVENT BINDING - CALLING CANCEL METHOD FROM PROFILE.COMPONENT.TS-->
-      <button class="btn btn-warning" type="button" (click)="cancel()">
-        Cancel
-      </button>
+      <div class="flex">
+        <button class="btn btn-save" type="submit">Save</button>
+        <!-- (click) ~ EVENT BINDING - CALLING CANCEL METHOD FROM PROFILE.COMPONENT.TS-->
+        <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
+          <button class="btn btn-secondary" type="button" (click)="onCancel()">
+            Cancel
+          </button>
 
-      <!-- (click) ~ EVENT BINDING - CALLING LOGOUT METHOD FROM PROFILE.COMPONENT.TS-->
-      <button
-        type="button"
-        class="btn btn-warning"
-        style="float: right"
-        (click)="logout()"
-      >
-        Logout
-      </button>
+          <!-- (click) ~ EVENT BINDING - CALLING LOGOUT METHOD FROM PROFILE.COMPONENT.TS-->
+          <button
+            type="button"
+            class="btn btn-danger"
+            style="float: right"
+            (click)="logout()"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
     </form>
   </div>
 </div>

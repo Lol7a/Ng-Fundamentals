@@ -1,0 +1,32 @@
+<div>
+  <h1>Upcoming Angular Events</h1>
+  <hr />
+  <div class="row">
+    <div class="col-md-7">
+      <div>
+        <button
+          type="button"
+          class="btn btn-default"
+          [class.active]="sortBy === 'ASC'"
+          (click)="sortBy = 'ASC'"
+        >
+          Date Ascending
+        </button>
+        <button
+          type="button"
+          class="btn btn-default"
+          [class.active]="sortBy === 'DESC'"
+          (click)="sortBy = 'DESC'"
+        >
+          Date Descending
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="row"> -->
+  <!-- <div *ngFor="let event of events" class="col-md-6"> -->
+  <event-thumbnail [sortBy]="sortBy" [event]="event"></event-thumbnail>
+  <!-- </div> -->
+  <!-- </div> -->
+</div>

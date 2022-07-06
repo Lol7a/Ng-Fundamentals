@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from './auth.service';
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { TOASTR_TOKEN, Toastr } from '../common/index';
+import { TOASTR_TOKEN, Toastr } from '../../common/index';
 
 @Component({
   templateUrl: './profile.component.html',
@@ -52,6 +52,7 @@ export class ProfileComponent implements OnInit {
         .subscribe(() => {
           this.toastr.success('Profile Saved');
         });
+      this.router.navigate(['events']);
     }
   }
 
@@ -75,7 +76,7 @@ export class ProfileComponent implements OnInit {
 
   // METHOD ON CANCEL BUTTON IN PROFILE.COMPONENT.HTML,
   // IF CLICKED IT CANCELS PROFILE EDIT AND NAVIGATES US TO LOGIN PAGE
-  cancel() {
+  onCancel() {
     this.router.navigate(['events']);
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from './auth.service';
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,6 +10,19 @@ import { Router } from '@angular/router';
         float: right;
         color: #e05c65;
         padding-left: 10px;
+      }
+
+      .btn-login {
+        background-color: rgb(15, 174, 97);
+        color: white;
+      }
+      .btn-login:hover {
+        background-color: rgb(78, 184, 133);
+      }
+
+      .flex {
+        display: flex;
+        justify-content: space-between;
       }
     `,
   ],

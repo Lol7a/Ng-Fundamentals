@@ -9,7 +9,7 @@ li:hover {
   border-radius: 5px;
 }
 
-li > a.active {
+a.active {
   color: rgb(78, 184, 133);
 }
 
@@ -37,12 +37,12 @@ li > a.active {
   display: flex;
 }
 
-ul li:not(:last-of-type) {
-  margin-right: 10px;
-}
-
 .navbar-nav {
   flex-direction: row;
+
+  & .nav-item:not(:last-of-type) {
+    margin-right: 10px;
+  }
 }
 
 .collapse.navbar-collapse {
@@ -62,6 +62,31 @@ ul li:not(:last-of-type) {
 
   &:hover {
     color: #fff;
+  }
+}
+
+simple-modal {
+  & .list-group {
+    margin-bottom: 10px;
+    &-item {
+      background-color: #262634;
+
+      &:not(:last-of-type) {
+        margin-bottom: 5px;
+      }
+
+      &:hover {
+        background-color: #485563;
+        color: white;
+      }
+    }
+  }
+
+  // & .my-pagination ::ng-deep .ngx-pagination .current {
+  & .my-pagination::ng-deep {
+    & .current {
+      background-color: rgb(15, 174, 97);
+    }
   }
 }
 

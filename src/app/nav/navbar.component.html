@@ -40,22 +40,15 @@
             class="dropdown-menu dropdown-menu-dark"
             aria-labelledby="navbarDropdown"
           >
-            <li>
-              <!-- <a [routerLink]="['/events', event.id]" class="dropdown-item" -->
-              <a (click)="onSelectedDropdown()" class="dropdown-item"
-                >Angular Connect</a
-              >
+            <li *ngFor="let event of events">
+              <app-dropdown [event]="event"></app-dropdown>
             </li>
           </ul>
         </li>
       </ul>
 
       <!-- (ngSubmit) ~ EVENT BINDING - CALLING SEARCHSESSIONS METHOD FROM NAVBAR.COMPONENT.TS -->
-      <!-- <form
-        id="searchForm"
-        (ngSubmit)="searchSessions(searchTerm)"
-        class="navbar-form navbar-right"
-      > -->
+
       <form id="searchForm" (ngSubmit)="searchSessions(searchTerm)">
         <!-- <div class="form-group"> -->
         <!-- TWO-WAY BINDING FOR SEARCHTERM -->
@@ -66,11 +59,9 @@
           class="form-control me-2"
           placeholder="Search Sessions"
         />
-        <!-- </div> -->
         <button class="btn" modal-trigger="searchResults">Search</button>
       </form>
 
-      <!-- <div class="navbar-header navbar-right"> -->
       <div>
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -79,6 +70,7 @@
               class="nav-link"
               *ngIf="!auth.isAuthenticated()"
               [routerLink]="['user/login']"
+              routerLinkActive="active"
             >
               Login
             </a>
@@ -87,6 +79,7 @@
               class="nav-link"
               *ngIf="auth.isAuthenticated()"
               [routerLink]="['user/profile']"
+              routerLinkActive="active"
             >
               Welcome {{ auth.currentUser.firstName }}
             </a>
@@ -97,6 +90,8 @@
   </div>
 </div>
 
+<router-outlet></router-outlet>
+
 <simple-modal
   closeOnBodyClick="true"
   elementId="searchResults"
@@ -105,11 +100,18 @@
   <div class="list-group">
     <!-- ngFor ~ CREATING VIEW FOR EVERY FOUND SESSION -->
     <a
-      class="list-group-item bg-transparent"
-      *ngFor="let session of foundSessions"
+      class="list-group-item"
+      *ngFor="
+        let session of foundSessions
+          | paginate: { itemsPerPage: 5, currentPage: p }
+      "
       [routerLink]="['/events', session['eventId']]"
     >
       {{ session.name }}
     </a>
   </div>
+  <pagination-controls
+    class="my-pagination"
+    (pageChange)="p = $event"
+  ></pagination-controls>
 </simple-modal>

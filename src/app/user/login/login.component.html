@@ -7,8 +7,8 @@
     (ngSubmit)="login(loginForm.value)"
     autocomplete="off"
   >
-    <div class="form-group">
-      <label for="userName">User Name: </label>
+    <div class="form-group mb-2">
+      <label class="form-label" for="userName">User Name: </label>
       <!-- IF USERNAME IS NOT VALID AND IT HAS BEEN TOUCHED IT SHOWS THIS TEXT -->
       <em
         *ngIf="
@@ -30,8 +30,8 @@
       />
     </div>
 
-    <div class="form-group">
-      <label for="password">Password: </label>
+    <div class="form-group mb-2">
+      <label class="form-label" for="password">Password: </label>
       <!-- IF PASSWORD IS NOT VALID AND IT HAS BEEN TOUCHED IT SHOWS THIS TEXT -->
       <em
         *ngIf="
@@ -53,23 +53,25 @@
       />
     </div>
 
-    <span
-      (mouseenter)="mouseoverLogin = true"
-      (mouseleave)="mouseoverLogin = false"
-    >
-      <!-- PROPERTY BINDING - DISABLES A BUTTON IF FORM IS INVALID -->
-      <button
-        type="submit"
-        [disabled]="loginForm.invalid"
-        class="btn btn-primary"
+    <div class="flex">
+      <span
+        (mouseenter)="mouseoverLogin = true"
+        (mouseleave)="mouseoverLogin = false"
       >
-        Login
+        <!-- PROPERTY BINDING - DISABLES A BUTTON IF FORM IS INVALID -->
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="btn btn-login"
+        >
+          Login
+        </button>
+      </span>
+      <!-- (click) ~ EVENT BINDING - CALLING LOGOUT METHOD FROM LOGIN.COMPONENT.TS-->
+      <button type="button" (click)="cancel()" class="btn btn-secondary">
+        Cancel
       </button>
-    </span>
-    <!-- (click) ~ EVENT BINDING - CALLING LOGOUT METHOD FROM LOGIN.COMPONENT.TS-->
-    <button type="button" (click)="cancel()" class="btn btn-warning">
-      Cancel
-    </button>
+    </div>
   </form>
   <br />
   <!-- SHOES ALERT IF FORM IS NOT VALID -->

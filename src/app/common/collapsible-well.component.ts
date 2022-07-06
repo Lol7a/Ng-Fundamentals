@@ -13,11 +13,13 @@ import { Component, Input } from '@angular/core';
   styles: [
     `
       .well {
-        background-color: #485563;
+        background-color: #262634;
+        padding: 0 20px;
       }
 
       .well:hover {
-        background-color: rgba(72, 85, 99, 0.517);
+        background-color: #485563;
+        cursor: pointer;
       }
     `,
   ],

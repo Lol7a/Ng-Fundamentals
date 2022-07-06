@@ -4,6 +4,20 @@ em {
   padding-left: 10px;
 }
 
+.btn-save {
+  background-color: rgb(15, 174, 97);
+  color: white;
+
+  &:hover {
+    background-color: rgb(78, 184, 133);
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
 .error {
   & input {
     background-color: #e3c3c5;

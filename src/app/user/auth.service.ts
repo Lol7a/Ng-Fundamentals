@@ -5,7 +5,7 @@ import { IUser } from './user.model';
 
 @Injectable()
 export class AuthService {
-  currentUser!: IUser; // user.model.ts
+  public currentUser: IUser; // user.model.ts
 
   constructor(private http: HttpClient) {}
 
@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   isAuthenticated() {
-    return !!this.currentUser;
+    return this.currentUser;
   }
 
   checkAuthenticationStatus() {

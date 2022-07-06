@@ -1,4 +1,11 @@
-import { Component, Input, ViewChild, ElementRef, Inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewChild,
+  ElementRef,
+  Inject,
+  AfterViewInit,
+} from '@angular/core';
 import { JQ_TOKEN } from './jQuery.service';
 
 @Component({
@@ -10,7 +17,7 @@ import { JQ_TOKEN } from './jQuery.service';
           <div class="modal-header">
             <button
               type="button"
-              class="close"
+              class="close btn btn-green"
               data-bs-dismiss="modal"
               aria-label="Close"
             >
@@ -25,18 +32,7 @@ import { JQ_TOKEN } from './jQuery.service';
       </div>
     </div>
   `,
-  styles: [
-    `
-      .modal-content {
-        background-color: #37434f;
-      }
-
-      .modal-body {
-        height: 250px;
-        overflow-y: scroll;
-      }
-    `,
-  ],
+  styleUrls: ['./simpleModal.component.scss'],
 })
 export class SimpleModalComponent {
   //  DEFINING INPUT PROPERTIES
